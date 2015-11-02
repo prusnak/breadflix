@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Breadflix</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #111;
+  }
+  video {
+    height: 100%;
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+
+  <!--
+  test1: QmcBgQawoQk3zFq4tgrPYQ5FaAkEVE5tTqGwkTt7pDa7HQ
+  test2: QmcXDwgY8tW4kzBKUWKFRN9tUzC4GnSMiMHUygMszTkY5d
+  -->
+
+  <video id="stream" controls preload="auto" width="800" height="450"
+         poster="http://localhost:8080/ipfs/QmcBgQawoQk3zFq4tgrPYQ5FaAkEVE5tTqGwkTt7pDa7HQ/poster.jpg">
+    <source src="http://localhost:8080/ipfs/QmcBgQawoQk3zFq4tgrPYQ5FaAkEVE5tTqGwkTt7pDa7HQ/1080p.mp4" type='video/mp4'>
+  </video>
+
+</body>
+</html>

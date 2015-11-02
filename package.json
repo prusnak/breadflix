@@ -1,0 +1,28 @@
+{
+  "name": "breadflix",
+  "version": "1.0.0",
+  "description": "Breadflix will blow your socks off!",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prusnak/breadflix.git"
+  },
+  "keywords": [
+    "breadflix",
+    "watch",
+    "movies",
+    "series"
+  ],
+  "author": "stick",
+  "license": "MIT",
+  "homepage": "https://github.com/prusnak/breadflix",
+  "devDependencies": {
+    "electron-prebuilt": "^0.34.0"
+  },
+  "dependencies": {
+    "ipfsd-ctl": "^0.6.1"
+  }
+}
