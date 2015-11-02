@@ -15,17 +15,21 @@ app.on('window-all-closed', function() {
 
 app.on('ready', function() {
 
-  ipfsd.local(function(err, node) {
+  var bfPath = (process.env.HOME || process.env.USERPROFILE) + '/.breadflix';
+
+  ipfsd.local(bfPath, function(err, node) {
     if (!node.initialized) {
-      console.info('Initializing IPFS daemon');
+      console.info('Initializing IPFS daemon in', bfPath);
       node.init({
-        directory: userPath, // TODO
-        keySize              // TODO
+        directory: bfPath
       }, function(err, res) {
+        if (err) console.log(err);
       });
     }
     console.info('Starting IPFS daemon');
-    node.startDaemon(function (err, ipfsNode) {});
+    node.startDaemon(function (err, ipfsNode) {
+      if (err) console.log(err);
+    });
     ipfsDaemon = node;
   });
 
@@ -35,7 +39,9 @@ app.on('ready', function() {
 
   mainWindow.on('closed', function() {
     console.info('Stopping IPFS daemon');
-    ipfsDaemon.stopDaemon(function(err) {});
+    ipfsDaemon.stopDaemon(function(err) {
+      if (err) console.log(err);
+    });
     ipfsDaemon = null;
     mainWindow = null;
   });
