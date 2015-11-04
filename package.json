@@ -23,6 +23,7 @@
     "electron-prebuilt": "^0.34.0"
   },
   "dependencies": {
-    "ipfsd-ctl": "^0.6.1"
+    "ipfsd-ctl": "^0.6.1",
+    "jquery": "^2.1.4"
   }
 }

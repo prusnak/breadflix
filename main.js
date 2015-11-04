@@ -33,9 +33,11 @@ app.on('ready', function() {
     ipfsDaemon = node;
   });
 
-  mainWindow = new BrowserWindow({width: 800, height: 450});
+  mainWindow = new BrowserWindow({width: 1024, height: 768});
   mainWindow.setMenuBarVisibility(false);
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
+
+  // mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function() {
     console.info('Stopping IPFS daemon');

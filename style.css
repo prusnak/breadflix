@@ -1,0 +1,487 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Open Sans';
+    font-weight: 400;
+    margin: 0px;
+    overflow: hidden;
+}
+.clearfix {
+    clear: both;
+}
+.loading {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9000;
+    display: none;
+}
+.loading .content {
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    width: 100%;
+    height: 138px;
+    overflow: hidden;
+    margin-top: -69px;
+    text-align: center;
+}
+.loading img {
+    width: 64px;
+}
+.loading h2 {
+    color: #FFF;
+}
+.sidebar {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 180px;
+    height: 100%;
+    background-color: #121212;
+    border-right: solid 1px #000;
+    padding: 20px;
+    overflow: auto;
+}
+.sidebar .search {
+    position: absolute;
+    left: 20px;
+    top: 12px;
+    width: calc(100% - 40px);
+}
+.sidebar .search input {
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 5px;
+    color: #FFF;
+    font-size: 12px;
+    padding: 8px 10px;
+    width: 100%;
+    display: block;
+    outline: none;
+    background: transparent;
+    font-weight: bold;
+}
+.sidebar .search i {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: rgba(255, 255, 255, 0.4);
+}
+.sidebar h4 {
+    margin-top: 40px;
+    color: #404040;
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+.sidebar a {
+    display: block;
+    font-weight: bold;
+    font-size: 13px;
+    transition: background-color ease 0.3s;
+    color: #999999;
+    border-radius: 3px;
+    padding: 8px;
+    text-decoration: none;
+}
+.sidebar a.active,
+.sidebar a.active:hover {
+    background-image: linear-gradient(to bottom, #3076ce 0%, #175ab0 100%);
+    color: #FFF;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2);
+    cursor: default;
+}
+.sidebar a:hover {
+    background: #010101;
+}
+.sidebar::-webkit-scrollbar {
+    background: none;
+    width: 9px;
+}
+.sidebar::-webkit-scrollbar-button {
+    display: none;
+}
+.sidebar::-webkit-scrollbar-track {
+    display: none;
+}
+.sidebar::-webkit-scrollbar-track-piece {
+    display: none;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+.sidebar::-webkit-scrollbar-corner {
+    display: none;
+}
+.sidebar::-webkit-resizer {
+    display: none;
+}
+.sidebar:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.sidebar:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.6);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.main {
+    position: absolute;
+    top: 0px;
+    left: 180px;
+    width: calc(100% - 180px);
+    height: 100%;
+    background-color: #181817;
+    overflow: auto;
+}
+.main::-webkit-scrollbar {
+    background: none;
+    width: 9px;
+}
+.main::-webkit-scrollbar-button {
+    display: none;
+}
+.main::-webkit-scrollbar-track {
+    display: none;
+}
+.main::-webkit-scrollbar-track-piece {
+    display: none;
+}
+.main::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+.main::-webkit-scrollbar-corner {
+    display: none;
+}
+.main::-webkit-resizer {
+    display: none;
+}
+.main:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.main:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.6);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.single {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    width: 220px;
+    height: 100%;
+    background-color: #181817;
+    border-left: solid 1px #000;
+    padding: 20px;
+    overflow: hidden;
+    z-index: 8000;
+    box-shadow: 0 5px 6px rgba(0, 0, 0, 0.5);
+    transform: translateX(220px);
+    transition: transform .2s ease-in-out;
+}
+.single.active {
+    transform: translateX(0px);
+}
+.single-darken {
+    position: fixed;
+    top: 0px;
+    left: 180px;
+    width: calc(100% - 180px);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 7000;
+    display: none;
+}
+.single .close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 8015;
+    opacity: 0.7;
+    color: #FFF;
+    transition: opacity .1s ease-in-out;
+    cursor: pointer;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.single .close:hover {
+    opacity: 1;
+}
+.single .poster {
+    width: 220px;
+    height: auto;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 8010;
+}
+.single .poster img {
+    height: 348px;
+    width: 220px;
+}
+.single .imdb-button {
+    text-decoration: none;
+    position: absolute;
+    top: 400px;
+    left: 0px;
+    color: #0c0b00;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: #deb522;
+    transition: background-color .2s ease-in-out;
+    cursor: pointer;
+}
+.single .imdb-button:hover {
+    background-color: #b79007
+}
+.single .watch-button {
+    position: absolute;
+    top: 348px;
+    left: 0px;
+    color: #FFF;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    width: 100%;
+    padding: 15px;
+    text-align: center;
+    background-color: #3498DB;
+    transition: background-color .2s ease-in-out;
+    cursor: pointer;
+}
+.single .watch-button:hover {
+    background-color: #2C83BC;
+}
+.single .title {
+    position: absolute;
+    top: 462px;
+    left: 10px;
+    color: #FFF;
+    display: block;
+    font-weight: bold;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.single .year {
+    position: absolute;
+    top: 487px;
+    left: 10px;
+    color: #999994;
+    font-size: 14px;
+}
+.single .plot {
+    position: absolute;
+    top: 512px;
+    left: 10px;
+    height: calc(100% - 522px);
+    width: calc(100% - 20px);
+    overflow: auto;
+}
+.single .plot::-webkit-scrollbar {
+    background: none;
+    width: 9px;
+}
+.single .plot::-webkit-scrollbar-button {
+    display: none;
+}
+.single .plot::-webkit-scrollbar-track {
+    display: none;
+}
+.single .plot::-webkit-scrollbar-track-piece {
+    display: none;
+}
+.single .plot::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+.single .plot::-webkit-scrollbar-corner {
+    display: none;
+}
+.single .plot::-webkit-resizer {
+    display: none;
+}
+.single .plot:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.5);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.single .plot:hover::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.6);
+    background-clip: content-box;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.single .plot p {
+    margin: 0px;
+    padding: 0px;
+    text-align: justify;
+    color: #666666;
+    font-size: 13px;
+}
+.movies {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.movies .movie {
+    height: 195px;
+    width: 132px;
+    padding: 0;
+    display: inline-block;
+    margin: 12px;
+    border-radius: 3px;
+    position: relative;
+    background: #000;
+    text-align: left;
+    transform: scale(1);
+    transition: transform .3s ease-in-out;
+}
+.movies .movie.hidden {
+    transform: scale(0);
+}
+.movies .movie::before {
+    display: block;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.15), 0 2px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    border: 1px solid #000;
+    z-index: 3;
+}
+.movies .movie .eye {
+    transition: all ease 0.3s;
+    background: rgba(0, 0, 0, 0.4);
+    color: #FFF;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    line-height: 185px;
+    right: 0;
+    top: 0;
+    left: 0;
+    text-align: center;
+    font-size: 60px;
+    opacity: 0;
+    width: 101%;
+    height: 101%;
+    z-index: 10;
+    cursor: pointer;
+}
+.movies .movie:hover .eye {
+    opacity: 1;
+}
+.movies .movie .poster {
+    width: 133px;
+    height: 196px;
+    overflow: hidden;
+    display: block;
+    margin: 0 0 10px 0;
+    border-radius: 3px;
+    -webkit-transform: translateZ(0);
+    cursor: pointer;
+}
+.movies .movie .poster img {
+    opacity: 1;
+    z-index: 2;
+    border-radius: 3px;
+    width: 133px;
+    height: 196px;
+}
+.movies .movie .title {
+    color: #FFF;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.movies .movie .year {
+    font-size: 12px;
+    color: #666;
+    display: block;
+    margin-top: 3px;
+}
+.player {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 7000;
+    display: none;
+}
+.player .close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 8015;
+    opacity: 0.7;
+    color: #FFF;
+    transition: opacity .1s ease-in-out;
+    cursor: pointer;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.player .close:hover {
+    opacity: 1;
+}
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.advertisement {
+    width: 728px;
+    height: 90px;
+    position: absolute;
+    left: 50%;
+    margin-left: -364px;
+    bottom: 20px;
+    border-radius: 5px;
+    background-color: #121212;
+    border: solid 1px #000;
+    z-index: 11000;
+    display: none;
+}
+.advertisement .close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 11500;
+    opacity: 0.7;
+    color: #FFF;
+    transition: opacity .1s ease-in-out;
+    cursor: pointer;
+    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.advertisement .close:hover {
+    opacity: 1;
+}
