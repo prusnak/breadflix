@@ -37,7 +37,7 @@ app.on('ready', function() {
   mainWindow.setMenuBarVisibility(false);
   mainWindow.loadUrl('file://' + __dirname + '/index.html');
 
-  // mainWindow.webContents.openDevTools();
+  /*//*/ mainWindow.webContents.openDevTools();
 
   mainWindow.on('closed', function() {
     console.info('Stopping IPFS daemon');

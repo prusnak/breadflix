@@ -458,30 +458,12 @@ body {
     width: 100%;
     height: 100%;
 }
-.advertisement {
-    width: 728px;
-    height: 90px;
+#videoicon {
     position: absolute;
-    left: 50%;
-    margin-left: -364px;
-    bottom: 20px;
-    border-radius: 5px;
-    background-color: #121212;
-    border: solid 1px #000;
-    z-index: 11000;
+    width: 10%;
+    height: 10%;
+    z-index: 4;
+    left: 45%;
+    top: 45%;
     display: none;
-}
-.advertisement .close {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    z-index: 11500;
-    opacity: 0.7;
-    color: #FFF;
-    transition: opacity .1s ease-in-out;
-    cursor: pointer;
-    text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.5);
-}
-.advertisement .close:hover {
-    opacity: 1;
 }

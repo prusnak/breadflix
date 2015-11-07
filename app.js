@@ -1,4 +1,4 @@
-var roothash = 'QmNxTtCso6bdh5dpbECdpWBXG4oDDYWgXuSd6AUgx2fVoB';
+var roothash = 'QmbSCGtCspqoM2EXMZnuL492xx2bvKD3E6nV5sH4ownjGh';
 
 window.$ = window.jQuery = require('jquery');
 
@@ -6,14 +6,25 @@ var ipfsbase = 'http://localhost:8080/ipfs/';
 
 document.addEventListener('DOMContentLoaded', function() {
 
+    var nextId = (function() {
+        var id = 0;
+        return function() { return 'mov_' + (id++); };
+    })();
+
     var load_movies = function() {
         $('.loading').fadeIn(300);
         $.getJSON(ipfsbase + roothash, function(data) {
             $('.loading').fadeOut(300);
             window.pages = data.pages;
             $.each(data.downloads, function(i, item) {
+                item.id = nextId();
                 window.store[item.id] = item;
-                $('.movies').append('<div class="movie hidden" data-id="' + item.id + '"><div class="poster"><div class="eye"><i class="fa fa-eye"></i></div><img src="' + ipfsbase + item.id + '/cover.jpg" /></div><div class="title">' + item.title + '</div><div class="year">' + item.year + '</div></div>');
+                if (item.hashcover) {
+                    item.cover = ipfsbase + item.hashcover;
+                } else {
+                    item.cover = 'cover.jpg';
+                }
+                $('.movies').append('<div class="movie hidden" data-id="' + item.id + '"><div class="poster"><div class="eye"><i class="fa fa-eye"></i></div><img src="' + item.cover + '" /></div><div class="title">' + item.title + '</div><div class="year">' + item.year + '</div></div>');
                 setTimeout(function() {
                     $('.movie[data-id="' + item.id + '"]').removeClass('hidden');
                 }, (i + 1) * 150);
@@ -25,13 +36,13 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     var load_movie = function(id) {
-        var movie = window.store[id];
-        $('.single .poster img').attr('src', ipfsbase + movie.id + '/cover.jpg');
-        $('.single .watch-button').attr('data-id', movie.id);
-        $('.single .imdb-button').attr('href', 'http://www.imdb.com/title/' + movie.imdb + '/');
-        $('.single .title').html(movie.title);
-        $('.single .year').html(movie.year);
-        $('.single .plot p').html(movie.plot);
+        var item = window.store[id];
+        $('.single .poster img').attr('src', item.cover);
+        $('.single .watch-button').attr('data-id', item.id);
+        $('.single .imdb-button').attr('href', 'http://www.imdb.com/title/' + item.imdb + '/');
+        $('.single .title').html(item.title);
+        $('.single .year').html(item.year);
+        $('.single .plot p').html(item.plot);
         $('.single').addClass('active');
         $('.single-darken').fadeIn(300);
     };
@@ -88,10 +99,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         $('.single .watch-button').click(function() {
             var id = $(this).attr('data-id');
-            var movie = window.store[id];
+            var item = window.store[id];
 
-            $('.video-wrapper #video').attr('poster', ipfsbase + movie.id + '/poster.jpg');
-            $('.video-wrapper #video > source').attr('src', ipfsbase + movie.id + '/1080p.mp4');
+            if (item.hashposter) {
+                $('.video-wrapper #video').attr('poster', ipfsbase + item.hashposter);
+            }
+            if (item.hash1080p) {
+                $('.video-wrapper #video > source').attr('src', ipfsbase + item.hash1080p);
+            } else if (item.hash720p) {
+                $('.video-wrapper #video > source').attr('src', ipfsbase + item.hash720p);
+            }
             $('.video-wrapper #video').load();
             $('.video-wrapper #video').get(0).play();
             $('.player').fadeIn(300);
@@ -109,8 +126,14 @@ document.addEventListener('DOMContentLoaded', function() {
         $('.video-wrapper #video').click(function() {
             if (this.paused) {
                 this.play();
+                $('#videoicon').attr('src', 'play.svg');
+                $('#videoicon').show();
+                $('#videoicon').fadeOut(1000);
             } else {
                 this.pause();
+                $('#videoicon').attr('src', 'pause.svg');
+                $('#videoicon').show();
+                $('#videoicon').fadeOut(1000);
             }
         });
 
