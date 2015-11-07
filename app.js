@@ -5,6 +5,7 @@ window.$ = window.jQuery = require('jquery');
 var ipfsbase = 'http://localhost:8080/ipfs/';
 
 document.addEventListener('DOMContentLoaded', function() {
+
     var load_movies = function() {
         $('.loading').fadeIn(300);
         $.getJSON(ipfsbase + roothash, function(data) {
@@ -22,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
             $('.loading').fadeOut(300);
         });
     };
+
     var load_movie = function(id) {
         var movie = window.store[id];
         $('.single .poster img').attr('src', ipfsbase + movie.id + '/cover.jpg');
@@ -33,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
         $('.single').addClass('active');
         $('.single-darken').fadeIn(300);
     };
+
     $(document).ready(function() {
         window.genre = '';
         window.query = '';
@@ -40,6 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
         window.pages = -1;
         window.store = {};
         load_movies();
+
         $('input').on('keyup', function(e) {
             if (e.keyCode == 13) {
                 window.query = $(this).val();
@@ -49,6 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 load_movies();
             }
         });
+
         $('.main').scroll(function() {
             if ($(this)[0].scrollHeight - $(this).scrollTop() === $(this).outerHeight()) {
                 if (window.page < window.pages || window.pages == -1) {
@@ -57,6 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             };
         });
+
         $('.sidebar a').click(function() {
             $('.sidebar a.active').removeClass('active');
             $(this).addClass('active');
@@ -69,31 +75,52 @@ document.addEventListener('DOMContentLoaded', function() {
             $('.movies').html('');
             load_movies();
         });
+
         $('.movies').on('click', '.movie', function() {
             var id = $(this).attr('data-id');
             load_movie(id);
         });
+
         $('.single .close').click(function() {
             $('.single').removeClass('active');
             $('.single-darken').fadeOut(300);
         });
+
         $('.single .watch-button').click(function() {
             var id = $(this).attr('data-id');
             var movie = window.store[id];
 
-            $('.video-wrapper #stream').attr('poster', ipfsbase + movie.id + '/poster.jpg');
-            $('.video-wrapper #stream source').attr('src', ipfsbase + movie.id + '/1080p.mp4');
-            $('.video-wrapper #stream').load();
-            $('.video-wrapper #stream').get(0).play();
+            $('.video-wrapper #video').attr('poster', ipfsbase + movie.id + '/poster.jpg');
+            $('.video-wrapper #video > source').attr('src', ipfsbase + movie.id + '/1080p.mp4');
+            $('.video-wrapper #video').load();
+            $('.video-wrapper #video').get(0).play();
             $('.player').fadeIn(300);
             $('.single .close').click();
         });
+
         $('.player .close').click(function() {
-            $('.video-wrapper #stream').get(0).pause();
-            $('.video-wrapper #stream').attr('poster', '');
-            $('.video-wrapper #stream source').attr('src', '');
-            $('.video-wrapper #stream').load();
+            $('.video-wrapper #video').get(0).pause();
+            $('.video-wrapper #video').attr('poster', '');
+            $('.video-wrapper #video > source').attr('src', '');
+            $('.video-wrapper #video').load();
             $('.player').fadeOut(300);
         });
+
+        $('.video-wrapper #video').click(function() {
+            if (this.paused) {
+                this.play();
+            } else {
+                this.pause();
+            }
+        });
+
+        $('.video-wrapper #video').dblclick(function() {
+            if (document.webkitFullscreenElement) {
+                this.webkitExitFullscreen();
+            } else {
+                this.webkitRequestFullscreen();
+            }
+        });
     });
+
 }, false);
