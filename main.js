@@ -1,8 +1,9 @@
-var app = require('app');
-var BrowserWindow = require('browser-window');
-var ipfsd = require('ipfsd-ctl');
+'use strict';
 
-require('crash-reporter').start();
+const electron = require('electron');
+const app = electron.app;
+const BrowserWindow = electron.BrowserWindow;
+const ipfsd = require('ipfsd-ctl');
 
 var mainWindow = null;
 var ipfsDaemon = null;
@@ -35,7 +36,7 @@ app.on('ready', function() {
 
   mainWindow = new BrowserWindow({width: 1024, height: 768});
   mainWindow.setMenuBarVisibility(false);
-  mainWindow.loadUrl('file://' + __dirname + '/index.html');
+  mainWindow.loadURL('file://' + __dirname + '/index.html');
 
   /*//*/ mainWindow.webContents.openDevTools();
 
