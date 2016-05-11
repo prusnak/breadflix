@@ -20,10 +20,10 @@
   "license": "MIT",
   "homepage": "https://github.com/prusnak/breadflix",
   "devDependencies": {
-    "electron-prebuilt": "^0.36.4"
+    "electron-prebuilt": "^1.0.1"
   },
   "dependencies": {
-    "ipfsd-ctl": "^0.7.1",
-    "jquery": "^2.1.4"
+    "ipfsd-ctl": "^0.13.0",
+    "jquery": "^2.2.3"
   }
 }
